@@ -32,7 +32,6 @@ public class AuController {
 	 * 		username: [string], // логин
 	 * 		password: [string] // пароль 
 	 * }
-	 * 
 	 * Возвращаемое значение: 
 	 * 	В случае успеха: 
 	 * { 
