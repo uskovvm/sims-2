@@ -22,7 +22,7 @@ import com.carddex.sims2.persistence.model.User;
 
 @Service("userDetailsService")
 @Transactional
-public class MyUserDetailsService implements UserDetailsService {
+public class UserSecurityDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,7 +33,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private HttpServletRequest request;
 
-    public MyUserDetailsService() {
+    public UserSecurityDetailsService() {
         super();
     }
 
@@ -51,30 +51,61 @@ public class MyUserDetailsService implements UserDetailsService {
             if (user == null) {
                 throw new UsernameNotFoundException("No user found with username: " + email);
             }
-
-            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user.getRoles()));
+            org.springframework.security.core.userdetails.User userDetails = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user.getRoles()));
+            return userDetails;
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    public UserLoginDetails restLoadUserByUsername(final String email) throws UsernameNotFoundException {
+        final String ip = getClientIP();
+        if (loginAttemptService.isBlocked(ip)) {
+            throw new RuntimeException("blocked");
+        }
+
+        try {
+            final User user = userRepository.findByEmail(email);
+            UserLoginDetails userDetails;
+            if (user == null) {
+            	userDetails = new UserLoginDetails("error", "Login Failure");                
+            	//throw new UsernameNotFoundException("No user found with username: " + email);
+            }else
+            	userDetails = new UserLoginDetails("success", "Login Success", user.getId(),user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, getRoles(user.getRoles()), getPrivileges(user.getRoles()));
+            
+            return userDetails;
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     // UTIL
 
     private final Collection<? extends GrantedAuthority> getAuthorities(final Collection<Role> roles) {
         return getGrantedAuthorities(getPrivileges(roles));
     }
 
-    private final List<String> getPrivileges(final Collection<Role> roles) {
-        final List<String> privileges = new ArrayList<String>();
+    private final List getPrivileges(final Collection<Role> roles) {
+        final List<Long> privileges = new ArrayList<Long>();
         final List<Privilege> collection = new ArrayList<Privilege>();
         for (final Role role : roles) {
             collection.addAll(role.getPrivileges());
         }
         for (final Privilege item : collection) {
-            privileges.add(item.getName());
+            //privileges.add(item.getName());
+        	privileges.add(item.getId());
         }
 
         return privileges;
+    }
+
+    private final List getRoles(final Collection<Role> roles) {
+        final List<Long> collection = new ArrayList<Long>();
+        for (final Role role : roles) {
+            //collection.add(role.getName());
+        	collection.add(role.getId());
+        }
+
+        return collection;
     }
 
     private final List<GrantedAuthority> getGrantedAuthorities(final List<String> privileges) {
