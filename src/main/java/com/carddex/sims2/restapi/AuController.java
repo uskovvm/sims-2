@@ -22,8 +22,6 @@ public class AuController {
 	@Autowired
 	UserSecurityDetailsService userDetailsService;
 
-	@Autowired
-	IUserService userService;
 
 	/*-
 	 * Войти в систему POST /core/api/login 
@@ -42,9 +40,8 @@ public class AuController {
 	 * 			username: [string], // имя пользователя 
 	 * 			blocked: [number], // аккаунт заблокирован
 	 * 			registerDate: [number], // дата регистрации аккаунта
-	 * 			roles: [
-	 * 				[...number] // ид ролей пользователя ],
-	 * 			permissions: [ // права пользователя [...number] // ид разрешений ]}}
+	 * 			roles: [[...number] // ид ролей пользователя ],
+	 * 			permissions: [[...number] // ид разрешений ]}}
 	 */
 
 	@RequestMapping(value = "/core/api/login", method = RequestMethod.POST)
