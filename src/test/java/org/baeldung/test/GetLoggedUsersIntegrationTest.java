@@ -10,9 +10,6 @@ import io.restassured.specification.RequestSpecification;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.baeldung.Application;
-import org.baeldung.persistence.dao.UserRepository;
-import org.baeldung.persistence.model.User;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestIntegrationConfig;
 import org.junit.Before;
@@ -24,6 +21,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.carddex.sims2.Application;
+import com.carddex.sims2.persistence.dao.UserRepository;
+import com.carddex.sims2.persistence.model.User;
 
 
 @RunWith(SpringRunner.class)

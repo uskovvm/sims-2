@@ -7,14 +7,8 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.baeldung.persistence.dao.UserRepository;
-import org.baeldung.persistence.dao.VerificationTokenRepository;
-import org.baeldung.persistence.model.User;
-import org.baeldung.persistence.model.VerificationToken;
-import org.baeldung.spring.ServiceConfig;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestIntegrationConfig;
-import org.baeldung.validation.EmailExistsException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -24,6 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.carddex.sims2.persistence.dao.UserRepository;
+import com.carddex.sims2.persistence.dao.VerificationTokenRepository;
+import com.carddex.sims2.persistence.model.User;
+import com.carddex.sims2.persistence.model.VerificationToken;
+import com.carddex.sims2.spring.ServiceConfig;
+import com.carddex.sims2.validation.EmailExistsException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestDbConfig.class, ServiceConfig.class, TestIntegrationConfig.class })

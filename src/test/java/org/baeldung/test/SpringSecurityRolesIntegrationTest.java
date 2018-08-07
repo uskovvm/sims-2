@@ -6,12 +6,6 @@ import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.baeldung.persistence.dao.PrivilegeRepository;
-import org.baeldung.persistence.dao.RoleRepository;
-import org.baeldung.persistence.dao.UserRepository;
-import org.baeldung.persistence.model.Privilege;
-import org.baeldung.persistence.model.Role;
-import org.baeldung.persistence.model.User;
 import org.baeldung.spring.TestDbConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +14,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.carddex.sims2.persistence.dao.PrivilegeRepository;
+import com.carddex.sims2.persistence.dao.RoleRepository;
+import com.carddex.sims2.persistence.dao.UserRepository;
+import com.carddex.sims2.persistence.model.Privilege;
+import com.carddex.sims2.persistence.model.Role;
+import com.carddex.sims2.persistence.model.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestDbConfig.class)

@@ -14,13 +14,8 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.baeldung.persistence.dao.UserRepository;
-import org.baeldung.persistence.dao.VerificationTokenRepository;
-import org.baeldung.persistence.model.User;
-import org.baeldung.persistence.model.VerificationToken;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestTaskConfig;
-import org.baeldung.task.TokensPurgeTask;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.carddex.sims2.persistence.dao.UserRepository;
+import com.carddex.sims2.persistence.dao.VerificationTokenRepository;
+import com.carddex.sims2.persistence.model.User;
+import com.carddex.sims2.persistence.model.VerificationToken;
+import com.carddex.sims2.task.TokensPurgeTask;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestDbConfig.class, TestTaskConfig.class })

@@ -11,21 +11,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.UUID;
 
-import org.baeldung.persistence.dao.RoleRepository;
-import org.baeldung.persistence.dao.UserRepository;
-import org.baeldung.persistence.dao.VerificationTokenRepository;
-import org.baeldung.persistence.model.Privilege;
-import org.baeldung.persistence.model.Role;
-import org.baeldung.persistence.model.User;
-import org.baeldung.persistence.model.VerificationToken;
-import org.baeldung.service.IUserService;
-import org.baeldung.service.UserService;
-import org.baeldung.spring.ServiceConfig;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestIntegrationConfig;
-import org.baeldung.validation.EmailExistsException;
-import org.baeldung.web.dto.UserDto;
-import org.baeldung.web.error.UserAlreadyExistException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +21,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.carddex.sims2.persistence.dao.RoleRepository;
+import com.carddex.sims2.persistence.dao.UserRepository;
+import com.carddex.sims2.persistence.dao.VerificationTokenRepository;
+import com.carddex.sims2.persistence.model.Privilege;
+import com.carddex.sims2.persistence.model.Role;
+import com.carddex.sims2.persistence.model.User;
+import com.carddex.sims2.persistence.model.VerificationToken;
+import com.carddex.sims2.service.IUserService;
+import com.carddex.sims2.service.UserService;
+import com.carddex.sims2.spring.ServiceConfig;
+import com.carddex.sims2.validation.EmailExistsException;
+import com.carddex.sims2.web.dto.UserDto;
+import com.carddex.sims2.web.error.UserAlreadyExistException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestDbConfig.class, ServiceConfig.class, TestIntegrationConfig.class })

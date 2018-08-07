@@ -10,6 +10,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.carddex.sims2.spring.PersistenceJPAConfig;
+
 import javax.sql.DataSource;
 import java.util.Properties;
 
